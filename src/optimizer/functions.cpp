@@ -244,7 +244,9 @@ void pass_callables(const ASTContext &ctx, AnalysisState &state, PassScratch &sk
         }
     }
 
-    for (auto &[fname, is_native_vec] : state.func_param_native) {
+    for (auto &entry : state.func_param_native) {
+        const auto &fname = entry.first;
+        auto &is_native_vec = entry.second;
         for (const auto &fdef : func_defs) {
             if (fdef.first != fname)
                 continue;
